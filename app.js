@@ -121,13 +121,13 @@ app.post('/uploadpdf', upload.single('uploadpdf'), async (req, res) => {
 
 
     // Redirect to homepage (or render with updated data)
-    res.redirect('/');
-  } catch (error) {
+  res.redirect('/');
+
+} catch (error) {
   console.error('FULL ERROR:', error.response?.data || error.message || error);
   res.status(500).send(error.response?.data || error.message);
 }
-
-
+});
 
 
 
@@ -170,7 +170,7 @@ app.post('/uploadimage', upload.single('uploadimage'), async (req, res) => {
   console.error('FULL ERROR:', error.response?.data || error.message || error);
   res.status(500).send(error.response?.data || error.message);
 }
-
+});
 
 
 
