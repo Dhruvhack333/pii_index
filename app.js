@@ -167,10 +167,9 @@ app.post('/uploadimage', upload.single('uploadimage'), async (req, res) => {
     res.redirect('/');
 
   } catch (error) {
-    console.error('Error uploading image:', error);
-    res.status(500).send('Error uploading image or detecting PII');
-  }
-});
+  console.error('FULL ERROR:', error.response?.data || error.message || error);
+  res.status(500).send(error.response?.data || error.message);
+}
 
 
 
