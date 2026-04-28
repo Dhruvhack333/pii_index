@@ -36,18 +36,16 @@ sessionOptions={
   };
   
 
-  // Configure multer to store files in the 'uploads' directory
-const upload = multer({ 
+const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '/tmp/'); // Specify the uploads directory
+      cb(null, path.join(__dirname, 'uploads'));
     },
     filename: function (req, file, cb) {
-      cb(null, file.originalname); // Use the original file name
+      cb(null, file.originalname);
     }
   })
 });
-
 
 //using sessions
 app.use(session(sessionOptions))
