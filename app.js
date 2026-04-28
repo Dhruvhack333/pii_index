@@ -123,10 +123,9 @@ app.post('/uploadpdf', upload.single('uploadpdf'), async (req, res) => {
     // Redirect to homepage (or render with updated data)
     res.redirect('/');
   } catch (error) {
-    console.error('Error uploading PDF:', error);
-    res.status(500).send('Error uploading PDF');
-  }
-});
+  console.error('FULL ERROR:', error.response?.data || error.message || error);
+  res.status(500).send(error.response?.data || error.message);
+}
 
 
 
