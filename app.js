@@ -36,17 +36,22 @@ sessionOptions={
   };
   
 
+const uploadsDir = path.join(__dirname, 'uploads');
+
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir);
+}
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, 'uploads'));
+      cb(null, uploadsDir);
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname);
     }
   })
 });
-
 //using sessions
 app.use(session(sessionOptions))
 
